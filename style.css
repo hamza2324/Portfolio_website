@@ -642,3 +642,45 @@ body.page-exit {
   box-shadow: 0 8px 25px rgba(56,189,248,0.5); /* subtle shadow while enlarged */
   z-index: 10;                 /* bring to front if overlapping */
 }
+/* ================= MOBILE NAVBAR FIX ================= */
+
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--text);
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .navbar {
+    position: relative;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--bg-dark);
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    display: none;
+    z-index: 999;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li a {
+    font-size: 1.2rem;
+  }
+}
