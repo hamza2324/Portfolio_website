@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Hamza Jadoon</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- JS -->
+  <script defer src="script.js"></script>
+</head>
+<body>
+
+<!-- ===================== NAVBAR ===================== -->
+<header class="header">
+  <nav class="navbar">
+    <div class="logo">
+  <img src="pics/mypic.jpg" alt="Hamza Jadoon" class="profile-pic">
+  <span>HJ</span>
+</div>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="contact.html" class="active btn-nav">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ===================== PAGE HEADER ===================== -->
+<section class="page-header">
+  <h1 class="animate">Get In Touch</h1>
+  <p class="animate delay">
+    Contact me for internships, projects, or collaborations. I’d love to hear from you!
+  </p>
+</section>
+
+<!-- ===================== CONTACT FORM ===================== -->
+<section class="contact-section reveal">
+  <div class="container">
+    <div class="contact-wrapper">
+
+      <div class="contact-form-card">
+        <h2>Contact Form</h2>
+        <!-- FORMSPREE FORM -->
+        <form id="contactForm" action="https://formspree.io/f/xkoogwor" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="_replyto" placeholder="you@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Write your message..." rows="5" required></textarea>
+          </div>
+
+          <button type="submit" class="btn primary">Send Message</button>
+        </form>
+        <p id="formMessage" class="form-message"></p>
+      </div>
+
+      <div class="contact-info-card">
+        <h2>Contact Info</h2>
+        <p>Email: <a href="mailto:hamzajadoon71@gmail.com">hamzajadoon71@gmail.com</a></p>
+        <p>Phone: +92 3190809334</p>
+        <p>Location: Abbottabad, Pakistan</p>
+
+        <div class="social-links">
+          <a href="https://github.com/hamza2324" target="_blank">GitHub</a>
+          <a href="https://www.linkedin.com/in/hamza-jadoon-6645a7259/" target="_blank">LinkedIn</a>
+          <a href="https://www.facebook.com/hamza.jadoon.940" target="_blank">Facebook</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <p>© 2026 Hamza Jadoon. All Rights Reserved.</p>
+</footer>
+
+<!-- ===================== JS FOR CONFIRMATION ===================== -->
+<script>
+  const form = document.getElementById('contactForm');
+  const formMessage = document.getElementById('formMessage');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      if(response.ok){
+        formMessage.textContent = "Thanks! Your message has been sent.";
+        formMessage.style.color = "var(--primary)";
+        form.reset();
+      } else {
+        response.json().then(data => {
+          if(Object.hasOwn(data, 'errors')){
+            formMessage.textContent = data["errors"].map(error => error["message"]).join(", ");
+          } else {
+            formMessage.textContent = "Oops! There was a problem sending your message.";
+          }
+          formMessage.style.color = "red";
+        })
+      }
+    })
+    .catch(error => {
+      formMessage.textContent = "Oops! There was a problem sending your message.";
+      formMessage.style.color = "red";
+    });
+  });
+</script>
+
+</body>
+</html>
