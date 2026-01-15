@@ -692,3 +692,8 @@ body.page-exit {
 .nav-links a[href*="canva.site"]:hover {
   text-decoration: underline;
 }
+@media (max-width: 768px) {
+  .nav-links {
+    transition: all 0.3s ease;
+  }
+}

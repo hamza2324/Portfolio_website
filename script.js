@@ -82,6 +82,14 @@ buttons.forEach(btn => {
 const menuToggle = document.getElementById("menu-toggle");
 const navLinks = document.getElementById("nav-links");
 
+// Toggle menu on hamburger click
 menuToggle.addEventListener("click", () => {
   navLinks.classList.toggle("active");
+});
+
+// Close menu when any nav link is clicked
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("active");
+  });
 });
