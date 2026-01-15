@@ -684,3 +684,11 @@ body.page-exit {
     font-size: 1.2rem;
   }
 }
+.nav-links a[href*="canva.site"] {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.nav-links a[href*="canva.site"]:hover {
+  text-decoration: underline;
+}
